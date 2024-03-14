@@ -39,6 +39,7 @@
   --transition-long: 500ms ease;
 }
 
+/* ------------------------------------------------ */
 
 *,
 *::before,
@@ -105,11 +106,10 @@ body {
   border-radius: var(--radius-8);
 }
 
+/* ------------------------------------------------ */
 
-.search-wrapper::before {
-  position: absolute;
-  top: 14px;
-  right: 12px;
+.search-wrapper::before,
+.load-more::before {
   content: "";
   width: 20px;
   height: 20px;
@@ -120,7 +120,27 @@ body {
   display: none;
 }
 
+.search-wrapper::before {
+  position: absolute;
+  top: 14px;
+  right: 12px;
+}
+
 .search-wrapper.searching::before {
+  display: block;
+}
+
+.load-more {
+  background-color: var(--primary-variant);
+  margin-inline: auto;
+  margin-block: 36px 60px;
+}
+
+.load-more:is(:hover, :focus-visible) {
+  --primary-variant: hsla(350, 67%, 39%, 1);
+}
+
+.load-more.loading::before {
   display: block;
 }
 
@@ -258,7 +278,7 @@ body {
   width: calc(100% - 40px);
 }
 
-
+/* ------------------------------------------------ */
 
 
 .header {
@@ -360,7 +380,7 @@ body {
   opacity: 0;
 }
 
-
+/* ------------------------------------------------ */
 
 
 .sidebar {
@@ -457,7 +477,7 @@ body {
   pointer-events: all;
 }
 
-
+/* ------------------------------------------------ */
 
 .container {
   position: relative;
@@ -619,10 +639,7 @@ body {
 }
 
 
-
-/*-----------------------------------*\
-  #DETAIL PAGE
-\*-----------------------------------*/
+/* ------------------------------------------------ */
 
 
 .backdrop-image {
@@ -678,11 +695,22 @@ body {
 }
 
 
-/*-----------------------------------*\
-  #MOVIE LIST PAGE
-\*-----------------------------------*/
+/* ------------------------------------------------ */
 
+.genre-list .title-wrapper {
+  margin-block-end: 56px;
+}
 
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  column-gap: 16px;
+  row-gap: 20px;
+}
+
+.genre-list :is(.movie-card, .card-banner) {
+  width: 100%;
+}
 
 
 
