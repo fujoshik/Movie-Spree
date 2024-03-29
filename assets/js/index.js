@@ -91,5 +91,9 @@ const heroBanner = ({results: movieList}) => {
         controlItem.innerHTML = `
             <img src="${imageBaseUrl}w154${poster_path}" alt="${title}" loading="lazy" draggable="false" class="img-cover">
         `;
+
+        banner.querySelector(".control-inner").appendChild(controlItem);
     }
+
+    pageContent.appendChild(banner);
 }
