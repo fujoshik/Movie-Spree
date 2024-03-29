@@ -42,11 +42,7 @@ const heroBanner = ({results: movieList}) => {
             <div class="banner-slider"></div>
             
             <div class="slider-control">
-                <div class="control-inner">
-                    <button class="poster-box slider-item">
-                        <img src="./assets/images/slider-control.jpg" alt="Slide to Puss in Boots" loading="lazy" draggable="false" class="img-cover">
-                    </button>
-                </div>
+                <div class="control-inner"></div>
             </div>
     `;
 
@@ -87,5 +83,13 @@ const heroBanner = ({results: movieList}) => {
         banner.querySelector(".banner-slider").appendChild(sliderItem);
 
         const controlItem = document.createElement("button");
+        controlItem.classList.add("poster-box", "slider-item");
+        controlItem.setAttribute("slider-control", `${controlItemIndex}`);
+
+        controlItemIndex++;
+
+        controlItem.innerHTML = `
+            <img src="${imageBaseUrl}w154${poster_path}" alt="${title}" loading="lazy" draggable="false" class="img-cover">
+        `;
     }
 }
