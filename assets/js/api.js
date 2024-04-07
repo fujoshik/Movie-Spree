@@ -1,4 +1,4 @@
-const apiKey = "86038a6e997af0248093789290bf09e9";
+const apiKey = "";
 const imageBaseUrl = "https://image.tmdb.org/t/p/"
 
 const fetchData = function(url, callback, optionalParam) {
