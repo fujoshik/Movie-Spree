@@ -1,10 +1,10 @@
 import { apiKey, fetchData } from "./api.js";
 
-export async function sidebar() {
+export function sidebar() {
     // fetch all genres and change their format to {"1" : "Action"}
     const genreList = {};
     
-    await fetchData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
+    fetchData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
         ({genres}) => {
         for (const {id, name} of genres) {
             genreList[id] = name;
@@ -36,7 +36,7 @@ export async function sidebar() {
         </div>
     `;
 
-    const genreLink = () => {
+    const genreLink = function() {
         for (const [genreId, genreName] of Object.entries(genreList)) {
             const link = document.createElement("a");
             link.classList.add("sidebar-link");
@@ -56,7 +56,7 @@ export async function sidebar() {
 
     }
 
-    const toggleSidebar = (sidebar) => {
+    const toggleSidebar = function(sidebar) {
         const sidebarBtn = document.querySelector("[menu-btn]");
         const sidebarTogglers = document.querySelectorAll("[menu-toggler]");
         const sidebarClose = document.querySelectorAll("[menu-close]");

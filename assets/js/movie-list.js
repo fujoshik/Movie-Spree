@@ -2,6 +2,7 @@
 
 import { apiKey, fetchData } from "./api.js";
 import { createMovieCard } from "./movie-card.js";
+import { search } from "./search.js";
 import { sidebar } from "./sidebar.js";
 
 // Get genre name and url parameter from local storage
@@ -65,3 +66,5 @@ function({ results: movieList, total_pages }) {
         });
     });
 });
+
+search();

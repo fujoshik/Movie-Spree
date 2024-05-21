@@ -1,10 +1,11 @@
 import { sidebar } from "./sidebar.js"
 import { apiKey, imageBaseUrl, fetchData } from "./api.js";
 import { createMovieCard } from "./movie-card.js"
+import { search } from "./search.js";
 
 const pageContent = document.querySelector("[page-content]");
 
-await sidebar();
+sidebar();
 
 // Home page sections (Top rated, Upcoming, Trending)
 const homePageSections = [
@@ -38,20 +39,20 @@ const genreList = {
     }
 };
     
-await fetchData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
-    async ({genres}) => {
+fetchData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
+    ({genres}) => {
     for (const {id, name} of genres) {
         genreList[id] = name;
     }
 
-    await fetchData(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`, heroBanner);
+    fetchData(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`, heroBanner);
 
 });
 
 
 
 // load them in the banner
-const heroBanner = async function({results: movieList}) {
+const heroBanner = function({results: movieList}) {
     const banner = document.createElement("section");
     banner.classList.add("banner");
     banner.ariaLabel = "Popular Movies";
@@ -118,7 +119,7 @@ const heroBanner = async function({results: movieList}) {
 
     // fetch data from home page sections
     for (const {title, path} of homePageSections) {
-        await fetchData(`https://api.themoviedb.org/3${path}?api_key=${apiKey}&page=1`, createMovieList, title);
+        fetchData(`https://api.themoviedb.org/3${path}?api_key=${apiKey}&page=1`, createMovieList, title);
     }
 }
 
@@ -170,3 +171,6 @@ const createMovieList = function({results: movieList}, title) {
 
     pageContent.appendChild(movieListEl);
 }
+
+
+search();

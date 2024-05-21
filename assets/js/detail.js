@@ -1,12 +1,13 @@
 import { apiKey, imageBaseUrl, fetchData } from "./api.js";
 import { sidebar } from "./sidebar.js";
 import { createMovieCard } from "./movie-card.js";
+import { search } from "./search.js";
 
 // Details page
 const movieId = window.localStorage.getItem("movieId");
 const pageContent = document.querySelector("[page-content]");
 
-await sidebar();
+sidebar();
 
 const getGenres = function(genreList) {
     const newGenreList = [];
@@ -46,7 +47,7 @@ const filterVideos = function(videoList) {
     return videoList.filter(({type, site}) => (type === "Trailer" || type === "Teaser") && site === "YouTube");
 }
 
-await fetchData(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=casts,videos,images,releases`,
+fetchData(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&append_to_response=casts,videos,images,releases`,
 function (movie) {
     // object destructuring or destructuring assignment
     const {
@@ -168,3 +169,5 @@ const addSuggestedMovies = function({results: movieList}, title) {
 
     pageContent.appendChild(movieListEl);
 }
+
+search();
