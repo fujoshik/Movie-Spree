@@ -10,3 +10,9 @@ const searchTogglers = document.querySelectorAll("[search-toggler]")
 addEventOnElements(searchTogglers, "click", () => {
     searchBox.classList.toggle("active")
 })
+
+// store movieId in local storage when any movie card is clicked
+
+const getMovieDetail = function(movieId) {
+    window.localStorage.setItem("movieId", String(movieId));
+}

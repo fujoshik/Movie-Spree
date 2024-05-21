@@ -1,10 +1,10 @@
 import { apiKey, fetchData } from "./api.js";
 
-export function sidebar() {
+export async function sidebar() {
     // fetch all genres and change their format to {"1" : "Action"}
     const genreList = {};
     
-    fetchData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
+    await fetchData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
         ({genres}) => {
         for (const {id, name} of genres) {
             genreList[id] = name;

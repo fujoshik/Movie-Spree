@@ -4,7 +4,7 @@ import { createMovieCard } from "./movie-card.js"
 
 const pageContent = document.querySelector("[page-content]");
 
-sidebar();
+await sidebar();
 
 // Home page sections (Top rated, Upcoming, Trending)
 const homePageSections = [
@@ -38,20 +38,20 @@ const genreList = {
     }
 };
     
-fetchData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
-    ({genres}) => {
+await fetchData(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en`,
+    async ({genres}) => {
     for (const {id, name} of genres) {
         genreList[id] = name;
     }
 
-    fetchData(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`, heroBanner);
+    await fetchData(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`, heroBanner);
 
 });
 
 
 
 // load them in the banner
-const heroBanner = function({results: movieList}) {
+const heroBanner = async function({results: movieList}) {
     const banner = document.createElement("section");
     banner.classList.add("banner");
     banner.ariaLabel = "Popular Movies";
@@ -90,7 +90,7 @@ const heroBanner = function({results: movieList}) {
                 </div>
                 <p class="genre">${genreList.asString(genre_ids)}</p>
                 <p class="banner-text">${overview}</p>
-                <a href="./detail.html" class="btn">
+                <a href="./detail.html" class="btn" onclick="getMovieDetail(${id})">
                     <img src="./assets/images/play_circle.png" width="24" height="24" aria-hidden="true" alt="play circle">
                     <span class="span">Watch now</span>
                 </a>
@@ -118,7 +118,7 @@ const heroBanner = function({results: movieList}) {
 
     // fetch data from home page sections
     for (const {title, path} of homePageSections) {
-        fetchData(`https://api.themoviedb.org/3${path}?api_key=${apiKey}&page=1`, createMovieList, title);
+        await fetchData(`https://api.themoviedb.org/3${path}?api_key=${apiKey}&page=1`, createMovieList, title);
     }
 }
 
