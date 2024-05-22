@@ -10,10 +10,6 @@ sidebar();
 // Home page sections (Top rated, Upcoming, Trending)
 const homePageSections = [
     {
-        title: "Upcoming Movies",
-        path: "/movie/upcoming",
-    },
-    {
         title: "This Week\'s Trending Movies",
         path: "/trending/movie/week",
     },
@@ -21,6 +17,10 @@ const homePageSections = [
         title: "Top Rated Movies",
         path: "/movie/top_rated",
     },
+    {
+        title: "Upcoming Movies",
+        path: "/movie/upcoming",
+    }
 ]
 
 // fetch all genres and change their format to {"1" : "Action"}
