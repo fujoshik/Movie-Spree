@@ -146,7 +146,7 @@ function (movie) {
 });
 
 
-const addSuggestedMovies = function({results: movieList}, title) {
+const addSuggestedMovies = function({ results: movieList }) {
     const movieListEl = document.createElement("section");
     movieListEl.classList.add("movie-list");
     movieListEl.ariaLabel = "You May Also Like";
